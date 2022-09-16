@@ -1,83 +1,66 @@
-/*
-    Paste the code for your week 5 exercise below.
-*/
-let midx;
-let midy;
-function setup () {
-    createCanvas(windowWidth, windowHeight);
-    midx = width/2;
-    midy = height/2;
+//array for assigning colour to each circle function
+let myColour = [
+    [235, 52, 76],
+    [255, 94, 0],
+    [255, 221, 0],
+    [100, 227, 102],
+    [46, 217, 185],
+    [0, 115, 255],
+    [154, 68, 219],
+  ]
+  
+  //global Variables are defined
+  let numberWide;
+  let midy;
+  let speed;
+  let size;
+  let bounceValue;
+  
+  
+  function setup() {
+    createCanvas(500, 500);
+    noStroke(); 
     colorMode(RGB);
-    noStroke();
-  ellipseMode(RADIUS);
     
-    
-}
-
-function draw() {
+    //assigning variables
+    numberWide = 7;
+    midy = 500/2;
+   speed = 300;
+    size = 50;
+  }
+  
+  
+  function draw() {
     background(0);
     
-    radialGradient(midx, midy);
-
+    //this variable makes the balls bounce
+    bounceValue = sin(frameCount/22) *speed; 
     
-
-    function radialGradient(x, y) {
-    
-    let radius = midx / 4;
-    let h = 0;
-    for (let i = radius; i >= 0; i-=0.2) {
-        fill(0, h, 200);
-        ellipse(x, y, i, i);
-        h = (h + 1) % 360 ;
-        
+    //assigning condiiton to make the balls move slow to fast
+    if (frameCount < 300) {   
+      speed += (0.02 * frameCount);
     }
-    }
-}
-
-// function setup() {
-//     createCanvas(710, 400);
-//     dim = width / 2;
-//     colorMode(RGB);
-//     noStroke();
-//     ellipseMode(RADIUS);
     
-//   }
   
-//   function draw() {
-//     background (255);
-//     drawGradient(width /2 , height / 2);
+    //creating 7 circles
+    for (let i = 0; i < numberWide; i++) {
+    // mapping each circle evenly in the canvas
+    let xPos = map(i, 0, numberWide-1, 50, width-50);
+   
+      // declaring 7 circle functions individual parameters 
+      myCircle (xPos, bounceValue/2.8, myColour[0]);
+      myCircle (xPos, bounceValue/3.3, myColour[1]);
+      myCircle (xPos, bounceValue/4, myColour[2]);
+      myCircle (xPos, bounceValue/5, myColour [3]);
+      myCircle (xPos, bounceValue/6, myColour[4]);
+      myCircle (xPos, bounceValue/7, myColour[5]);
+      myCircle (xPos, bounceValue/8, myColour[6]);
     
-    
-//     function drawGradient(x, y) {
-//     let radius = dim / 2;
-//     let h = 1;
-//     for (let r = radius; r > 0; --r) {
-//       fill(90, 90, h);
-//       ellipse(x, y, r, r);
-//       h = (h + 1) % 360;
-      
-//     }
-//     }
-//   }
-
-    // fill (50);
-
-    
-
-    // ellipse(midx, midy, size * 1.66);
-
-
-    // fill (100);
-    // ellispe(midx, midy, size * 1.33);
-    // fill (150) ;
-    // ellipse(midx, midy, size);
-
-    // stop();
-
-    
-
-
-
-    
-
-    
+    }
+  
+  //calling the circle function to the screen 
+  function myCircle(x, y, colour) {
+    fill (colour);
+    ellipse(x, y + midy, size);
+  }
+}

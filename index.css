@@ -33,11 +33,19 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
+* {
+	color: antiquewhite;
+}
 body {
-	line-height: 1;
+	line-height: 1.5;
+	background-color: cadetblue;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	
 }
 ol, ul {
-	list-style: none;
+	list-style: none; 
+	
 }
 blockquote, q {
 	quotes: none;
@@ -58,5 +66,26 @@ table {
     change alignment or add padding for example.
 */
 main {
+	padding-top: 50px;
 
+}
+.wrapper {
+	margin: 0 auto;
+	text-align: center;
+	max-width: 700px;
+	
+}
+
+.navigation a:visited, a:link, a:active {
+	text-decoration: none;
+}
+
+.navigation li a:hover {
+    transition: all 0.2s ease 0s;
+    color: darkgray;
+}
+
+h1{
+	padding-top: 15px;
+	font-size: 24px;
 }
